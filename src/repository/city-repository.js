@@ -1,50 +1,43 @@
+const { where } = require("sequelize");
 const { City } = require("../models/index");
 
-async function InsertData(cityName) {
-  try {
-    await City.create({ name: cityName });
-  } catch (err) {
-    return err;
+class CityRepository {
+  async CreateCity(cityName) {
+    try {
+      return await City.create({ name: cityName });
+    } catch (err) {
+      console.log("Error in repositry layer ");
+      return error;
+    }
+  }
+
+  async GetCity(cityId) {
+    try {
+      return await City.findByPk(cityId);
+    } catch (error) {
+      console.log("Error in repositry layer ");
+      return error;
+    }
+  }
+
+  async DeleteCity(cityId) {
+    try {
+      const city = await City.destroy({ where: { id: cityId } });
+      return true;
+    } catch (error) {
+      console.log("Error in repositry layer ");
+      return error;
+    }
+  }
+
+  async UpdateCity(oldCityId, newCityName) {
+    try {
+      const city = await City.update(newCityName, { where: { id: oldCityId } });
+      return city;
+    } catch (error) {
+      console.log("Error in repositry layer ");
+      return error;
+    }
   }
 }
-
-async function FindData(cityName) {
-  if (!cityName) {
-    return await City.findAll({
-      raw: true,
-    });
-  } else {
-    return await City.findOne({
-      where: { name: cityName },
-      raw: true,
-    });
-  }
-}
-
-async function DeleteData(cityId) {
-  try {
-    const city = await City.findOne({ where: { name: cityName } });
-    if (!city) return -1;
-    await city.destroy({ where: { id: cityId } });
-    return 1;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function UpdateData(oldCityId, newCityName) {
-  try {
-    const city = await City.findOne({ where: { name: oldCityId } });
-    if (!city) return -1;
-    city.name = newCityName;
-    await city.save();
-    return 1;
-  } catch (error) {
-    return error;
-  }
-}
-
-module.exports.InsertData = InsertData;
-module.exports.FindData = FindData;
-module.exports.DeleteData = DeleteData;
-module.exports.UpdateData = UpdateData;
+module.exports = CityRepository;

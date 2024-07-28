@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cityOperation = require("./repository/city-repository");
+const { cityRepository } = require("./repository/city-repository");
 const { PORT } = require("./config/serverConfig");
 
 const setupAndStartServer = async () => {
@@ -11,8 +11,8 @@ const setupAndStartServer = async () => {
 
   app.listen(PORT, async () => {
     console.log(`Server started on port no : ${PORT} `);
-    const result = await cityOperation.InsertData("Raipur");
-    // console.log(result);
+    const city = await cityRepository.createCity;
+    console.log(city);
     // if (result == -1) {
     //   console.log("No such city");
     // } else if (result) {
