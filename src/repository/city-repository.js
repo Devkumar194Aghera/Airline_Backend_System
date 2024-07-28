@@ -7,33 +7,36 @@ class CityRepository {
       return await City.create({ name: cityName });
     } catch (error) {
       console.log("Error in repositry layer ");
-      throw {error};
+      throw { error };
     }
   }
 
-  async GetCity(cityId) {
+  async GetCity(CityId) {
     try {
-      return await City.findByPk(cityId);
+      return await City.findByPk(CityId);
     } catch (error) {
       console.log("Error in repositry layer ");
-      throw {error};
+      throw { error };
     }
   }
 
-  async DeleteCity(cityId) {
+  async DeleteCity(CityId) {
     try {
-      const city = await City.destroy({ where: { id: cityId } });
+      const city = await City.destroy({ where: { id: CityId } });
       return true;
     } catch (error) {
       console.log("Error in repositry layer ");
-      throw {error};
+      throw { error };
     }
   }
 
-  async UpdateCity(oldCityId, newCityName) {
+  async UpdateCity(CityId, newCityName) {
     try {
-      const city = await City.update(newCityName, { where: { id: oldCityId } });
-      return city;
+      const city = await City.update(
+        { name: newCityName },
+        { where: { id: CityId } }
+      );
+      return await City.findByPk(CityId);
     } catch (error) {
       console.log("Error in repositry layer ");
       throw { error };
