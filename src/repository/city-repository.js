@@ -5,9 +5,9 @@ class CityRepository {
   async CreateCity(cityName) {
     try {
       return await City.create({ name: cityName });
-    } catch (err) {
+    } catch (error) {
       console.log("Error in repositry layer ");
-      return error;
+      throw {error};
     }
   }
 
@@ -16,7 +16,7 @@ class CityRepository {
       return await City.findByPk(cityId);
     } catch (error) {
       console.log("Error in repositry layer ");
-      return error;
+      throw {error};
     }
   }
 
@@ -26,7 +26,7 @@ class CityRepository {
       return true;
     } catch (error) {
       console.log("Error in repositry layer ");
-      return error;
+      throw {error};
     }
   }
 
@@ -36,7 +36,7 @@ class CityRepository {
       return city;
     } catch (error) {
       console.log("Error in repositry layer ");
-      return error;
+      throw { error };
     }
   }
 }

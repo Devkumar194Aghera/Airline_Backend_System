@@ -11,7 +11,7 @@ class CityService {
       return city;
     } catch (error) {
       console.log("Something went wrong in service layer");
-      throw { error };
+      throw {error} ;
     }
   }
   async deleteCity(cityId) {
@@ -20,7 +20,7 @@ class CityService {
       return city;
     } catch (error) {
       console.log("Something went wrong in service layer");
-      throw { error };
+      throw {error} ;
     }
   }
   async updateCity(cityId, newCityName) {
@@ -29,7 +29,7 @@ class CityService {
       return city;
     } catch (error) {
       console.log("Something went wrong in service layer");
-      throw { error };
+      throw {error} ;
     }
   }
   async searchCity(cityId) {
@@ -38,7 +38,7 @@ class CityService {
       return city;
     } catch (error) {
       console.log("Something went wrong in service layer");
-      throw { error };
+      throw {error} ;
     }
   }
 }
