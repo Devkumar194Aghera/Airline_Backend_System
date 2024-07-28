@@ -65,6 +65,27 @@ const get = async (req, res) => {
   }
 };
 
+
+const getAll = async (req, res) => {
+  try {
+    const city = await cityService.searchAllCities();
+    return res.status(200).json({
+      data: city,
+      success: true,
+      message: "Successfully fetched all the city ",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Error occured while fetching all city ",
+      err: error,
+    });
+  }
+};
+
 const update = async (req, res) => {
   try {
     const id = req.params.id;
@@ -87,4 +108,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, destroy, get, update };
+module.exports = { create, destroy, get, getAll, update };
