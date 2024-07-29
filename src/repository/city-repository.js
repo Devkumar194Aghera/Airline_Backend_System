@@ -13,6 +13,15 @@ class CityRepository {
     }
   }
 
+  async CreateAllCity(cityName) {
+    try {
+      return await City.bulkCreate(cityName, { ignoreDuplicates: true });
+    } catch (error) {
+      console.log("Error in repositry layer ");
+      throw error;
+    }
+  }
+
   async GetCity(CityId) {
     try {
       return await City.findByPk(CityId);

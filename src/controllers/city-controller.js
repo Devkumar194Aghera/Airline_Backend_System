@@ -17,7 +17,28 @@ const create = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "Error occured while created a city ",
+      message: "Error occured while creating the city ",
+      err: error,
+    });
+  }
+};
+
+const createAll = async (req, res) => {
+  try {
+    data = req.body;
+    const cities = cityService.createAllCity(data.name);
+    return res.status(201).json({
+      data: cities,
+      success: true,
+      message: "Successfully created a city ",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Error occured while creating all city ",
       err: error,
     });
   }
@@ -65,7 +86,6 @@ const get = async (req, res) => {
   }
 };
 
-
 const getAll = async (req, res) => {
   try {
     const filter = req.query;
@@ -109,4 +129,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, destroy, get, getAll, update };
+module.exports = { create, createAll, destroy, get, getAll, update };
