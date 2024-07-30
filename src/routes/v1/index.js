@@ -4,6 +4,8 @@ const AirportController = require("../../controllers/airport-contorller");
 const FlightController = require("../../controllers/flight-contollers");
 const router = express.Router();
 router.post("/flights", FlightController.create);
+router.get("/flights/all", FlightController.getAll);
+router.get("/flights/:id", FlightController.get);
 
 router.post("/airport", AirportController.create);
 router.delete("/airport/:id", AirportController.destroy);
