@@ -22,14 +22,4 @@ class FlightRepository {
 }
 
 module.exports = FlightRepository;
-/**
- flightNumber:String,
- airplaneId:integer,
- depatureAirportId:integer,
- arrivalAirportId:integer,
- arrivalTime:Date,
- depatureTime:Date,
- price:integer,
- NumberOfSeats:integer
- boarding gate
- */
+
