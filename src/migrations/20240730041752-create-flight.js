@@ -2,6 +2,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    return [
+      queryInterface.addColumn("Flights", "BoardingGate", Sequelize.STRING),
+    ];
+
     await queryInterface.createTable("Flights", {
       id: {
         allowNull: false,
@@ -30,19 +34,16 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      departureTime: {
+      depatureTime: {
         type: Sequelize.DATE,
         allowNull: false,
       },
       price: {
         type: Sequelize.INTEGER,
-        defaultValue: 6700,
         allowNull: false,
+        defaultValue: 7800,
       },
-      boardingGate: {
-        type: Sequelize.STRING,
-      },
-      totalSeats: {
+      NumberOfSeats: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -54,9 +55,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      //Boarding gate
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Flights");
+    // await queryInterface.dropTable("Flights");
   },
 };
