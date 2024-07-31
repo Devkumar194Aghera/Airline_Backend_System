@@ -1,16 +1,10 @@
-const { where } = require("sequelize");
+const CrudRepository = require("./crud-repository");
 const { Airplane } = require("../models/index");
 
-class AirplaneRepository {
-  async getAirplane(airplaneId) {
-    try {
-      const airplane = await Airplane.findOne({ where: { id: airplaneId } });
-      return airplane;
-    } catch (error) {
-      console.log("Error in repositry layer ");
-      throw error;
-    }
+class airplaneRepository extends CrudRepository {
+  constructor() {
+    super(Airplane);
   }
 }
 
-module.exports = AirplaneRepository;
+module.exports = airplaneRepository;
