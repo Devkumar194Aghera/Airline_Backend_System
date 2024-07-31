@@ -4,6 +4,8 @@ const AirportController = require("../../controllers/airport-contorller");
 const FlightController = require("../../controllers/flight-contollers");
 const AirplaneContoller = require("../../controllers/airplane-controller");
 
+const { ValidateFlightCreation } = require("../../middlewares/index");
+
 const router = express.Router();
 
 router.post("/airplane", AirplaneContoller.create);
@@ -12,7 +14,11 @@ router.get("/airplane/:id", AirplaneContoller.get);
 router.patch("/airplane/:id", AirplaneContoller.update);
 router.delete("/airplane/:id", AirplaneContoller.destroy);
 
-router.post("/flights", FlightController.create);
+router.post(
+  "/flights",
+  ValidateFlightCreation.validateFlightCreation,
+  FlightController.create
+);
 router.get("/flights/all", FlightController.getAll);
 router.get("/flights/:id", FlightController.get);
 
