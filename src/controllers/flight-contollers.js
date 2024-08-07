@@ -28,6 +28,27 @@ const create = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const flightId = req.params.id;
+    const data = req.body;
+    const flight = await flightService.updateFlight(flightId, data);
+    return res.status(SuccessCodes.OK).json({
+      data: flight,
+      success: true,
+      message: "Successfully added the flight",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
+      data: {},
+      success: false,
+      message: "Error while adding the flight",
+      error: error,
+    });
+  }
+};
+
 const get = async (req, res) => {
   try {
     const flightId = req.params.id;
@@ -68,4 +89,4 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { create, get, getAll };
+module.exports = { create, get, getAll, update };

@@ -21,6 +21,7 @@ router.post(
 );
 router.get("/flights/all", FlightController.getAll);
 router.get("/flights/:id", FlightController.get);
+router.patch("/flights/:id", FlightController.update);
 
 router.post("/airport", AirportController.create);
 router.delete("/airport/:id", AirportController.destroy);

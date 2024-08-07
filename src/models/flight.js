@@ -13,18 +13,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Flight.init({
-    flightNumber: DataTypes.STRING,
-    airplaneId: DataTypes.INTEGER,
-    depatureAirportId: DataTypes.INTEGER,
-    arrivalAirportId: DataTypes.INTEGER,
-    arrivalTime: DataTypes.DATE,
-    depatureTime: DataTypes.DATE,
-    price: DataTypes.INTEGER,
-    NumberOfSeats: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Flight',
-  });
+  Flight.init(
+    {
+      flightNumber: DataTypes.STRING,
+      airplaneId: DataTypes.INTEGER,
+      depatureAirportId: DataTypes.INTEGER,
+      arrivalAirportId: DataTypes.INTEGER,
+      arrivalTime: DataTypes.DATE,
+      depatureTime: DataTypes.DATE,
+      price: DataTypes.INTEGER,
+      NumberOfSeats: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Flight",
+    }
+  );
   return Flight;
 };
